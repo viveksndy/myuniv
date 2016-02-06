@@ -115,8 +115,22 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_url = '/media/'
 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (MEDIA_ROOT,)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+RECOVER_ONLY_ACTIVE_USERS = False
+ACOUNT_ACIVATION_DAYS = 2
+ANONYMOUS_USER_ID = -1
+AUTH_USER_MODEL ='regiters.user'
+
+SITE_ID = 1

@@ -1,0 +1,42 @@
+{%  extends 'base.html' %}
+{%  load staticfiles %}
+{%  load regiters_extras %}
+{%  block body %}
+<CENTER>THIS IS UR LOGINPAGE</CENTER>
+<div class='col-md-8' style="padding-top:15px">
+                <form class="form-horizontal well" id="registerForm" method="POST"
+            	    enctype="multipart/form-data" action="{% url 'login' %}">
+            	    <fieldset>
+            	        {% csrf_token %} {% load tz %}
+            	        {% for field in form.visible_fields %}
+            	        <div id="div_{{ field.html_name }}"
+            	            class="form-group{% if field.errors %} has-error{% endif%}">
+            	            <label class="col-sm-4 control-label" for="{{ field.id_for_label }}">
+            	                {{ field.label }}
+            	            </label>
+            				<div class="col-md-6 cnt-inpt">
+            					{{ field|addcss:"form-control" }}
+            					<div class="text-muted pull-right">
+            	                    <small>{{ field.help_text }}</small>
+            	                </div> <!-- form-group -->
+            	                <span class="help-block">
+            	                    {% for error in field.errors %} {{error }} {% endfor %}
+            	                </span> <!-- help-block -->
+            	            </div> <!-- col-sm-4 -->
+
+
+            			</div>
+            			{% endfor %}
+            	        {% for hidden in user_form.hidden_fields %} {{ hidden }} {% endfor %}
+
+            					<div class="form-group">
+            								 <div class="col-sm-offset-5">
+            										<a href=" success.html"><button type="submit" class="btn btn-primary">submit this</button></a>
+            								 </div> <!-- col-sm-offset-6 -->
+            						 </div> <!-- form-group -->
+
+            					 </fieldset>
+            				</form>
+
+            </div>
+{%  endblock %}
